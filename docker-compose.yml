@@ -1,0 +1,44 @@
+version: '3.8'
+
+
+services:
+    mysql-auth:
+      image: mysql:8
+      environment:
+        MYSQL_DATABASE: auth_service_sf
+        MYSQL_USERNAME: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      ports:
+        - "3306:3306"
+
+    mysql-product:
+      image: mysql:8
+      environment:
+        MYSQL_DATABASE: product_sf
+        MYSQL_USERNAME: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      ports:
+        - "3307:3306"
+
+
+    mysql-order:
+      image: mysql:8
+      environment:
+        MYSQL_DATABASE: order_sf
+        MYSQL_USERNAME: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      ports:
+        - "3308:3306"
+
+
+    mongodb:
+      image: mongo:7
+      environment:
+        MONGO_INITDB_DATABASE: notification_db
+      ports:
+        - "27017:27017"
+
+    rabbitmq:
+      image: rabbitmq:3-management
+      ports:
+        - "5672:5672"
