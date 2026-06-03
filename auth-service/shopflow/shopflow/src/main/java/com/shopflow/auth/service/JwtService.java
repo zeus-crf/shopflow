@@ -1,4 +1,4 @@
-package com.shopflow.auth.service;
+package br.com.shopflow.auth_service.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

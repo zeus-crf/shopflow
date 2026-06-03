@@ -42,7 +42,7 @@ public class AuthService {
         return new AuthRespose(token);
     }
 
-    public AuthRespose login (AuthRequest dto){
+    public AuthRespose login(AuthRequest dto){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(dto.email(), dto.password())
         );
