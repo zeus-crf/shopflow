@@ -27,7 +27,7 @@ public class Product {
     private String description;
 
     @Column(length = 500)
-    private BigDecimal preco;
+    private BigDecimal price;
 
     @Column(nullable = false)
     private Integer stockQuantity;
