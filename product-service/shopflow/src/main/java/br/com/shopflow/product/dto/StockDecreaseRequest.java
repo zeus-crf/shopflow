@@ -4,6 +4,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public record StockDecreaseRequest(
-        @NotNull @Min(1) Integer quanttity
+        @NotNull @Min(1) Integer quantity
 ) {
 }
