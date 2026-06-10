@@ -5,18 +5,16 @@ services:
     mysql-auth:
       image: mysql:8
       environment:
-        MYSQL_DATABASE: auth_service_sf
-        MYSQL_USERNAME: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: auth_db
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       ports:
-        - "3306:3306"
+        - "3316:3306"
 
     mysql-product:
       image: mysql:8
       environment:
-        MYSQL_DATABASE: product_sf
-        MYSQL_USERNAME: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: product_db
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       ports:
         - "3307:3306"
 
@@ -24,9 +22,8 @@ services:
     mysql-order:
       image: mysql:8
       environment:
-        MYSQL_DATABASE: order_sf
-        MYSQL_USERNAME: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE: order_db
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       ports:
         - "3308:3306"
 

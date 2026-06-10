@@ -9,8 +9,6 @@ import br.com.shopflow.product.exception.ProductNotFoundException;
 import br.com.shopflow.product.model.Product;
 import br.com.shopflow.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang.ObjectUtils;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,20 +19,20 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    private List<ProductResponse> findAll(){
+    public List<ProductResponse> findAll(){
         return productRepository.findAll()
                 .stream()
                 .map(ProductResponse::from)
                 .toList();
     }
 
-    private ProductResponse findById(Long id){
+    public ProductResponse findById(Long id){
         return productRepository.findById(id)
                 .map(ProductResponse::from)
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
 
-    private ProductResponse create(ProductRequest request){
+    public ProductResponse create(ProductRequest request){
         var product = Product.builder()
                 .name(request.name())
                 .description(request.description())
@@ -45,7 +43,7 @@ public class ProductService {
         return ProductResponse.from(productRepository.save(product));
     }
 
-    private ProductResponse update(Long id, ProductUpdateRequest request){
+    public ProductResponse update(Long id, ProductUpdateRequest request){
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
 
@@ -58,7 +56,7 @@ public class ProductService {
 
     }
 
-    private void delete(Long id){
+    public void delete(Long id){
 
         if (!productRepository.existsById(id)){
             throw new ProductNotFoundException(id);
@@ -69,14 +67,15 @@ public class ProductService {
 
     public ProductResponse decreaseStock(Long id, StockDecreaseRequest dto){
 
+
         var product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
 
-        if (product.getStockQuantity() < dto.quanttity()){
-            throw new InsufficientStockException(dto.quanttity(), product.getStockQuantity());
+        if (product.getStockQuantity() < dto.quantity()){
+            throw new InsufficientStockException(dto.quantity(), product.getStockQuantity());
         }
 
-        product.setStockQuantity(product.getStockQuantity() - dto.quanttity());
+        product.setStockQuantity(product.getStockQuantity() - dto.quantity());
         return ProductResponse.from(productRepository.save(product));
     }
 

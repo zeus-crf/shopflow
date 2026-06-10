@@ -5,8 +5,13 @@ spring:
   application:
     name: product-service
 
+    utoconfigure:
+      exclude:
+        - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+        - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
   datasource:
-    url: jdbc:mysql://localhost:3307/product_sf
+    url: jdbc:mysql://localhost:3307/product_db
     username: root
     password: miguel2007$
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,4 +26,4 @@ spring:
 
 eureka:
   client:
-    enabled: true
+    enabled: false
